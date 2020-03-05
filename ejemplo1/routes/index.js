@@ -17,4 +17,8 @@ router.get("/collections/:query", (req, res) => {
   });
 });
 
+
+
+
+
 module.exports = router;
