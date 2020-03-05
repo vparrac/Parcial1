@@ -1,8 +1,6 @@
 const { MongoClient } = require("mongodb");
 
 const url = "mongodb://localhost:27017" || process.env.MONGODB_URI;
-
-
 function MongoUtils() {
   mu = {};
 
