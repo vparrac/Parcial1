@@ -48,7 +48,7 @@ function genera_tabla() {
       nv.data(myJson);
       nv.addAllAttribs();
       structure = [];
-      if (myJson.length > 0) {       
+      if (myJson.length > 0) {
         createCard.innerHTML = "";
         mensaje.innerHTML = "";
         f = myJson[0];
@@ -87,7 +87,6 @@ function genera_tabla() {
 
         //form.appendChild(document.createElement("br"));
         //form.appendChild(submit);
-
 
         thead.appendChild(hileraCabecera);
 
@@ -144,91 +143,71 @@ const guardarRegistro = evt => {
         return response.json();
       })
       .then(function(myJson) {
-        
-        tabla.innerHTML = "";
+        console.log("en algun lado");
         createCard.innerHTML = "";
-        mensaje.innerHTML = "";
+        
         structure = [];
-        if (myJson.length > 0) {
-        //  nv = navio(d3.select("#navio"), 600);
-        //  nv.data(data);
-        //  nv.addAllAttribs();
-          createCard.innerHTML = "";
-          mensaje.innerHTML = "";
-          tabla.innerHTML = innerHTML = "";
-          f = myJson[0];
-          const hileraCabecera = document.createElement("tr");
 
-          const tblBody = document.createElement("tbody");
-          const thead = document.createElement("thead");
-          tabla.appendChild(thead);
-          tabla.appendChild(tblBody);
-          for (a in f) {
-            // Parte del create
-            if (!(a == "_id")) {
-              structure.push(a);
-              const group = document.createElement("form-group");
-              const label = document.createElement("label");
-              label.for = a;
-              label.innerHTML = a;
+        createCard.innerHTML = "";
+        
+        tabla.innerHTML = innerHTML = "";
+        f = myJson[0];
+        const hileraCabecera = document.createElement("tr");
 
-              const input = document.createElement("input");
-              input.id = "FC" + a;
-              input.className = "form-control";
-              input.name = a;
-              group.appendChild(label);
-              group.appendChild(input);
-              createCard.appendChild(group);
-            }
+        const tblBody = document.createElement("tbody");
+        const thead = document.createElement("thead");
+        tabla.appendChild(thead);
+        tabla.appendChild(tblBody);
+        for (a in f) {
+          // Parte del create
+          if (!(a == "_id")) {
+            structure.push(a);
+            const group = document.createElement("form-group");
+            const label = document.createElement("label");
+            label.for = a;
+            label.innerHTML = a;
 
-            const tittle = document.createElement("th");
-            tittle.appendChild(document.createTextNode(a));
-            hileraCabecera.appendChild(tittle);
+            const input = document.createElement("input");
+            input.id = "FC" + a;
+            input.className = "form-control";
+            input.name = a;
+            group.appendChild(label);
+            group.appendChild(input);
+            createCard.appendChild(group);
           }
 
-          const submit = document.createElement("button");
-          submit.className = "btn btn-light";
-          submit.type = "submit";
-          submit.innerHTML = "Crear";
-          createCard.appendChild(document.createElement("br"));
-          createCard.appendChild(submit);
-
-          //formCreate= document.getElementById("createForm");
-
-          //form.appendChild(document.createElement("br"));
-          //form.appendChild(submit);
-
           const tittle = document.createElement("th");
-          tittle.appendChild(document.createTextNode("Acciones"));
+          tittle.appendChild(document.createTextNode(a));
           hileraCabecera.appendChild(tittle);
-          hileraCabecera.appendChild(tittle);
-          thead.appendChild(hileraCabecera);
-
-          myJson.forEach(f => {
-            const hileraCuerpo = document.createElement("tr");
-            for (a in f) {
-              const tittle = document.createElement("td");
-              tittle.appendChild(document.createTextNode(f[a]));
-              hileraCuerpo.appendChild(tittle);
-            }
-            tblBody.appendChild(hileraCuerpo);
-          });
-        } else {
-          createCard.innerHTML = "";
-          mensaje.innerHTML = "";
-          const classCard = document.createElement("div");
-          classCard.className = "card bg-danger text-white";
-          const bodyCard = document.createElement("div");
-          bodyCard.className = "card-body";
-          const msg = document.createElement("p");
-          msg.className = "card-text";
-          msg.appendChild(
-            document.createTextNode("No hay registros para la tabla buscada")
-          );
-          bodyCard.appendChild(msg);
-          classCard.appendChild(bodyCard);
-          mensaje.appendChild(classCard);
         }
+
+        const submit = document.createElement("button");
+        submit.className = "btn btn-light";
+        submit.type = "submit";
+        submit.innerHTML = "Crear";
+        createCard.appendChild(document.createElement("br"));
+        createCard.appendChild(submit);
+
+        //formCreate= document.getElementById("createForm");
+
+        //form.appendChild(document.createElement("br"));
+        //form.appendChild(submit);
+
+        //const tittle = document.createElement("th");
+        //tittle.appendChild(document.createTextNode("Acciones"));
+        //hileraCabecera.appendChild(tittle);
+        //hileraCabecera.appendChild(tittle);
+        thead.appendChild(hileraCabecera);
+
+        myJson.forEach(f => {
+          const hileraCuerpo = document.createElement("tr");
+          for (a in f) {
+            const tittle = document.createElement("td");
+            tittle.appendChild(document.createTextNode(f[a]));
+            hileraCuerpo.appendChild(tittle);
+          }
+          tblBody.appendChild(hileraCuerpo);
+        });
       });
   });
   evt.preventDefault();
