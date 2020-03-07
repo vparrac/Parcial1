@@ -130,9 +130,8 @@ const createPostJson = () => {
   return a;
 };
 const guardarRegistro = evt => {
-  //console.log(structure);
+  console.log("en guardaar");
   const data = createPostJson();
-
   const url = "/post/" + element.value + "/" + collections.value;
   fetch(url, {
     headers: { "Content-Type": "application/json" },
@@ -145,15 +144,15 @@ const guardarRegistro = evt => {
         return response.json();
       })
       .then(function(myJson) {
- 
+        
         tabla.innerHTML = "";
         createCard.innerHTML = "";
         mensaje.innerHTML = "";
         structure = [];
         if (myJson.length > 0) {
-          nv = navio(d3.select("#navio"), 600);
-          nv.data(data);
-          nv.addAllAttribs();
+        //  nv = navio(d3.select("#navio"), 600);
+        //  nv.data(data);
+        //  nv.addAllAttribs();
           createCard.innerHTML = "";
           mensaje.innerHTML = "";
           tabla.innerHTML = innerHTML = "";
