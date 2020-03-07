@@ -188,6 +188,7 @@ const guardarRegistro = evt => {
         createCard.appendChild(document.createElement("br"));
         createCard.appendChild(submit);
 
+        
         //formCreate= document.getElementById("createForm");
 
         //form.appendChild(document.createElement("br"));
