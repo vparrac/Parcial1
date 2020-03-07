@@ -2,7 +2,7 @@ window.onload = () => {
   mensaje.hidden = true;
   document.getElementById("cardRegistro").hidden = true;
 };
-
+nv = navio(d3.select("#navio"), 600);
 const element = document.getElementById("databases");
 const mensaje = document.getElementById("msg");
 const collections = document.getElementById("collections");
@@ -32,7 +32,8 @@ const getCollections = () => {
 
 function genera_tabla() {
   tabla.innerHTML = "";
-
+  createCard.innerHTML = "";
+  mensaje.innerHTML = "";
   const tblBody = document.createElement("tbody");
   const thead = document.createElement("thead");
   tabla.appendChild(thead);
@@ -43,8 +44,11 @@ function genera_tabla() {
       return response.json();
     })
     .then(function(myJson) {
+      nv = navio(d3.select("#navio"), 600);
+      nv.data(myJson);
+      nv.addAllAttribs();
       structure = [];
-      if (myJson.length > 0) {
+      if (myJson.length > 0) {       
         createCard.innerHTML = "";
         mensaje.innerHTML = "";
         f = myJson[0];
@@ -84,10 +88,7 @@ function genera_tabla() {
         //form.appendChild(document.createElement("br"));
         //form.appendChild(submit);
 
-        const tittle = document.createElement("th");
-        tittle.appendChild(document.createTextNode("Acciones"));
-        hileraCabecera.appendChild(tittle);
-        hileraCabecera.appendChild(tittle);
+
         thead.appendChild(hileraCabecera);
 
         myJson.forEach(f => {
@@ -100,6 +101,8 @@ function genera_tabla() {
           tblBody.appendChild(hileraCuerpo);
         });
       } else {
+        document.getElementById("cardRegistro").hidden = true;
+        tabla.innerHTML = "";
         createCard.innerHTML = "";
         mensaje.innerHTML = "";
         const classCard = document.createElement("div");
@@ -142,15 +145,21 @@ const guardarRegistro = evt => {
         return response.json();
       })
       .then(function(myJson) {
+ 
+        tabla.innerHTML = "";
+        createCard.innerHTML = "";
+        mensaje.innerHTML = "";
         structure = [];
         if (myJson.length > 0) {
+          nv = navio(d3.select("#navio"), 600);
+          nv.data(data);
+          nv.addAllAttribs();
           createCard.innerHTML = "";
           mensaje.innerHTML = "";
-          tabla.innerHTML=innerHTML="";
+          tabla.innerHTML = innerHTML = "";
           f = myJson[0];
           const hileraCabecera = document.createElement("tr");
-          
-          
+
           const tblBody = document.createElement("tbody");
           const thead = document.createElement("thead");
           tabla.appendChild(thead);

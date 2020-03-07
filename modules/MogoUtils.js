@@ -36,6 +36,8 @@ function MongoUtils() {
   };
 
   mu.getAllData = (dbName, collection) => {
+    console.log(dbName);
+    console.log(collection);
     const client = new MongoClient(url, { useUnifiedTopology: true });
     return client
       .connect()
@@ -46,6 +48,7 @@ function MongoUtils() {
           .collection(collection)
           .find({})
           .limit(20)
+          .sort({_id:1})
           .toArray();
       })
       .finally(() => client.close());
