@@ -1,6 +1,6 @@
 const { MongoClient } = require("mongodb");
 
-const url = "mongodb://localhost:27017" || process.env.MONGODB_URI;
+const url = process.env.MONGODB_URI || "mongodb://localhost:27017";
 function MongoUtils() {
   mu = {};
   mu.getAllDatabases = () => {
